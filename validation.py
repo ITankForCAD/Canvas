@@ -1,0 +1,124 @@
+VAL_TEXTS = [
+
+    "The cat sat on the windowsill, watching the rain fall quietly over the city.",
+
+    "En mathématiques, un nombre premier est un entier naturel qui admet exactement deux diviseurs distincts : 1 et lui-même.",
+
+    "¿Puedes resolver esta ecuación simple? 2x + 5 = 13. La respuesta est x = 4.",
+
+
+    """Machine learning models are often evaluated using validation datasets that are not seen during training.
+    This separation helps estimate how well a model generalizes to unseen data. Common metrics include accuracy,
+    precision, recall, F1 score, and loss curves over time. In language modeling, perplexity is frequently used
+    as an intrinsic evaluation metric, although it does not always correlate with downstream task performance.""",
+
+    """En programmation, la récursivité est une technique dans laquelle une fonction s’appelle elle-même.
+    Elle est souvent utilisée pour parcourir des structures de données hiérarchiques comme les arbres.
+    Toutefois, une mauvaise gestion des cas d’arrêt peut conduire à une récursion infinie et provoquer
+    un dépassement de pile (stack overflow).""",
+
+    """La probabilidad condicional describe la probabilidad de que ocurra un evento A dado que otro evento B
+    ya ha ocurrido. Se define como P(A|B) = P(A ∩ B) / P(B), siempre que P(B) > 0. Este concepto es central
+    en estadística bayesiana y en modelos probabilísticos modernos.""",
+
+    """def fibonacci(n):
+        if n <= 1:
+            return n
+        return fibonacci(n-1) + fibonacci(n-2)
+
+    This implementation is easy to read but inefficient for large n due to repeated computations.
+    In practice, memoization or an iterative approach is preferred.""",
+
+    """Once upon a time, in a small coastal village, the lighthouse keeper noticed that the fog behaved strangely.
+    Instead of drifting with the wind, it seemed to pulse, as if breathing. The villagers dismissed his worries,
+    but every night, the fog crept closer, swallowing familiar landmarks one by one.""",
+
+    """Les modèles de langage modernes reposent sur des architectures de type transformeur.
+    Ils utilisent des mécanismes d’attention pour pondérer l’importance relative des tokens dans une séquence.
+    Cette approche permet de capturer des dépendances à longue distance, contrairement aux modèles séquentiels
+    plus anciens comme les RNN classiques.""",
+
+
+    """In linear algebra, a vector space is a collection of objects called vectors, which may be added together
+    and multiplied by scalars. These operations must satisfy a set of axioms, such as associativity,
+    distributivity, and the existence of additive identities and inverses. Vector spaces form the foundation
+    of much of modern mathematics and applied science.
+
+    A basis of a vector space is a set of linearly independent vectors that span the entire space.
+    Every vector in the space can be expressed uniquely as a linear combination of basis vectors.
+    The number of vectors in a basis is called the dimension of the space. Finite-dimensional vector spaces
+    behave very differently from infinite-dimensional ones, especially in terms of convergence and topology.
+
+    In machine learning, vector spaces are used to represent data points, embeddings, and parameter spaces.
+    Word embeddings, for example, map discrete tokens to continuous vectors in high-dimensional spaces.
+    Operations on these vectors can capture semantic relationships, such as analogies and similarity.
+    Understanding the geometric structure of these spaces is essential for interpreting model behavior
+    and improving representation learning methods.""",
+
+    """Il était une fois un horloger qui vivait au sommet d’une montagne isolée. Chaque jour, il réparait
+    des montres que personne ne venait jamais chercher. Les habitants du village en contrebas disaient
+    que ses horloges mesuraient autre chose que le temps : elles comptaient les regrets, les espoirs,
+    et les promesses oubliées.
+
+    Un soir d’hiver, une jeune femme gravit la montagne avec une montre brisée héritée de sa mère.
+    L’horloger l’examina longuement sans dire un mot, puis démonta le mécanisme avec une précision presque
+    irréelle. Lorsqu’il eut terminé, la montre se mit à fonctionner à l’envers, remontant les secondes
+    au lieu de les écouler.
+
+    La femme comprit alors que certaines choses ne peuvent être réparées sans être transformées.
+    Elle redescendit au village, laissant derrière elle le tic-tac inversé, tandis que l’horloger,
+    pour la première fois depuis des décennies, ferma son atelier et laissa le temps s’arrêter.""",
+
+    """Consider the following Python module designed to train a simple neural network from scratch using NumPy.
+    While modern frameworks such as PyTorch and TensorFlow abstract away most low-level details, implementing
+    these components manually provides valuable insight into backpropagation and optimization.
+
+    The model consists of a linear layer followed by a non-linear activation function. During training,
+    gradients are computed with respect to a mean squared error loss, and parameters are updated using
+    gradient descent. Care must be taken to ensure numerical stability, especially when dealing with
+    large learning rates or poorly scaled inputs.
+
+    Although this implementation is not suitable for production use, it demonstrates the fundamental
+    principles behind deep learning systems. Understanding these principles helps practitioners debug
+    training issues, reason about convergence, and make informed architectural decisions. In research
+    settings, such low-level knowledge is often what distinguishes effective experimentation from
+    trial-and-error tuning."""
+]
+
+VAL_TEXTS += [
+
+    "Hello world! This sentence exists solely to test tokenization boundaries.",
+
+    "La pluie tombait doucement, comme si le ciel hésitait à pleurer.",
+
+    "El algoritmo terminó antes de lo esperado, pero nadie confió en el resultado.",
+
+    "In mathematics, zero is the only number that is neither positive nor negative.",
+
+    "def add(a, b): return a + b",
+
+    "Elle ferma le livre, certaine que l’histoire continuerait sans elle.",
+
+    "La derivada de x² es 2x, una de las primeras reglas que se aprenden en cálculo.",
+
+    "The server crashed at midnight, exactly when no one was watching.",
+
+    "print('Validation successful')",
+
+    "Un triangle rectangle possède toujours un angle droit.",
+
+    "El gato observó el cursor moverse, convencido de que era una presa.",
+
+    "Entropy measures uncertainty in a probability distribution.",
+
+    "for i in range(3): pass",
+
+    "La mémoire humaine est faillible, mais étonnamment créative.",
+
+    "Sometimes, the simplest model explains the data best."
+]
+
+import json
+
+with open("val_texts.json", "w", encoding="utf-8") as f:
+    json.dump(VAL_TEXTS, f, ensure_ascii=False, indent=2)
