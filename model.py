@@ -155,7 +155,7 @@ class ContextAE(nn.Module):
         self.decoder = decoder
         self.mask_ratio = mask_ratio
 
-    def forward(self, inputs_embeds, attention_mask=None, labels=None, nce_weight=0.20):
+    def forward(self, inputs_embeds, attention_mask=None, labels=None):
         B, L, D = inputs_embeds.shape
         x_input = inputs_embeds
         if self.training and self.mask_ratio > 0:
@@ -179,12 +179,14 @@ class ContextAE(nn.Module):
         if self.training:
             mse = self.mse_loss(reconstructed, inputs_embeds, attention_mask)
             nce = self.info_nce_loss(reconstructed, inputs_embeds, attention_mask)
-            loss = mse + (nce_weight * nce) # We weight NCE lower because it has a larger raw magnitude
+            cos = self.cosine_loss(reconstructed, inputs_embeds, attention_mask)
+            loss = cos + (0.1 * mse) + (0.2 * nce)
 
             return {
                 "loss": loss,
                 "mse": mse,
                 "nce": nce,
+                "cos": cos,
                 "logits": reconstructed
             }
         else:
@@ -193,6 +195,14 @@ class ContextAE(nn.Module):
                 "latents": machine_grids,
                 "human_grids": human_grids
             }
+    
+    def cosine_loss(self, pred, target, mask):
+        mask_bool = mask.view(-1).bool()
+        p_flat = pred.reshape(-1, pred.shape[-1])[mask_bool]
+        t_flat = target.reshape(-1, target.shape[-1])[mask_bool]
+        cosine_target = torch.ones(p_flat.shape[0], device=p_flat.device)
+        loss = F.cosine_embedding_loss(p_flat, t_flat, cosine_target, reduction="mean")
+        return loss
 
     def mse_loss(self, pred, target, mask):
         min_len = min(pred.shape[1], target.shape[1])

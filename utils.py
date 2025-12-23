@@ -72,7 +72,8 @@ def trainContextAE(
             avg_val_acc = total_val_acc / len(val_dataset)
             mse_val = outputs.get("mse").item()
             nce_val = outputs.get("nce").item()
-            print(f"step {step} | Loss : {loss.item():.4f} | MSE : {mse_val:.4f} | NCE : {nce_val:.4f} | Acc : {avg_val_acc:.2%}")
+            cos_val = outputs.get("cos").item()
+            print(f"step {step} | Loss : {loss.item():.4f} | MSE : {mse_val:.4f} | NCE : {nce_val:.4f} | Cosine : {cos_val:.4f}| Acc : {avg_val_acc:.2%}")
             model.train()
         
         step += 1
